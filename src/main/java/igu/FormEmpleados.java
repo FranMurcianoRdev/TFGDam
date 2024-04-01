@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import logica.Conexion;
-import logica.ImprimirTablaRegistro;
+import logica.LogicaEmpleados;
 
 
 /**
@@ -296,8 +296,6 @@ public class FormEmpleados extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor, llene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-        
     }//GEN-LAST:event_btnEnviarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
@@ -316,22 +314,26 @@ public class FormEmpleados extends javax.swing.JFrame {
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
-        guardarDatos();
+        LogicaEmpleados obj;
+        obj = new LogicaEmpleados();
+        obj.guardarDatos(tableEmpleados);
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
         // TODO add your handling code here:
-        eliminarRegistro();
+        LogicaEmpleados obj;
+        obj = new LogicaEmpleados();
+        obj.eliminarRegistro();
     }//GEN-LAST:event_btnBorrarMouseClicked
 
     private void btnVerRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerRegistroMouseClicked
         // TODO add your handling code here:
-        ImprimirTablaRegistro obj = new ImprimirTablaRegistro();
+        LogicaEmpleados obj;
+        obj = new LogicaEmpleados();
         obj.imprimirTablaRegistro();
        
     }//GEN-LAST:event_btnVerRegistroMouseClicked
 
-    
     private void imprimirTabla() {
         
         PrinterJob printerJob = PrinterJob.getPrinterJob();
@@ -361,62 +363,6 @@ public class FormEmpleados extends javax.swing.JFrame {
                     catch (PrinterException ex){}
                 } 
  }
-    private void guardarDatos() {
-        
-       String insertQuery = "INSERT INTO Empleados (nombre_empleado, ID_Empleado, salario_mensual, salario_anual) VALUES (?, ?, ?, ?)";
-
-        try {
-            // Crear un objeto PreparedStatement para ejecutar la consulta
-            PreparedStatement preparedStatement = Conexion.getConexion().prepareStatement(insertQuery);
-
-            // Obtener el modelo de tabla asociado a tu JTable
-            DefaultTableModel model = (DefaultTableModel) tableEmpleados.getModel();
-
-            // Iterar sobre las filas del modelo de tabla
-            for (int i = 0; i < model.getRowCount(); i++) {
-                // Obtener los datos de la fila actual
-                String nombreEmpleado = (String) model.getValueAt(i, 0);
-                int idEmpleado = Integer.parseInt((String) model.getValueAt(i, 1));
-                float salarioMensual = Float.parseFloat((String) model.getValueAt(i, 2));
-                float salarioAnual = Float.parseFloat((String) model.getValueAt(i, 3));
-
-                // Establecer los parámetros en el PreparedStatement
-                preparedStatement.setString(1, nombreEmpleado);
-                preparedStatement.setInt(2, idEmpleado);
-                preparedStatement.setFloat(3, salarioMensual);
-                preparedStatement.setFloat(4, salarioAnual);
-
-                // Ejecutar la consulta para insertar los datos en la base de datos
-                preparedStatement.executeUpdate();
-            }
-
-            JOptionPane.showMessageDialog(null, "Datos insertados correctamente en la base de datos.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-      
-    }
-    
-    private void eliminarRegistro () {
-        String deleteQuery = "DELETE FROM Empleados WHERE registro = (SELECT MAX(registro) FROM (SELECT registro FROM Empleados) AS registros)";
-        try {
-            // Crear un objeto Statement para ejecutar la consulta
-            Statement statement = Conexion.getConexion().createStatement();
-
-            // Ejecutar la consulta para eliminar el último registro
-            int rowsAffected = statement.executeUpdate(deleteQuery);
-
-            JOptionPane.showMessageDialog(null, "Se eliminó el último registro correctamente.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-    
-    
-    
-    
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
