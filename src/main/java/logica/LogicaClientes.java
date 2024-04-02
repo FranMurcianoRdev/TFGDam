@@ -72,14 +72,15 @@ public class LogicaClientes {
         try {
             Connection connection = Conexion.getConexion();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT ID_Empleado, nombre_empleado, salario_mensual, salario_anual FROM Empleados");
+            ResultSet resultSet = statement.executeQuery("SELECT ID_cliente, nombre_cliente, ID_transacción, fecha, cantidad FROM Clientes");
 
             while (resultSet.next()) {
                 Object[] row = {
-                        resultSet.getInt("ID_Empleado"),
-                        resultSet.getString("nombre_empleado"),
-                        resultSet.getFloat("salario_mensual"),
-                        resultSet.getFloat("salario_anual")
+                        resultSet.getInt("ID_Cliente"),
+                        resultSet.getString("nombre_cliente"),
+                        resultSet.getInt("ID_transacción"),
+                        resultSet.getInt("fecha"),
+                        resultSet.getFloat("cantidad"),
                 };
                 model.addRow(row);
             }
@@ -117,22 +118,20 @@ public class LogicaClientes {
     }
 
     private static void sumSalaries(DefaultTableModel model) {
-        float totalMensual = 0;
-        float totalAnual = 0;
+        float totalCobros = 0;
 
         for (int i = 0; i < model.getRowCount(); i++) {
-            totalMensual += (float) model.getValueAt(i, 2);
-            totalAnual += (float) model.getValueAt(i, 3);
+            totalCobros += (float) model.getValueAt(i, 4);
         }
 
-        Object[] totalRow = {"", "Total", totalMensual, totalAnual};
+        Object[] totalRow = {"", "Total", totalCobros};
         model.addRow(totalRow); 
     }
   
     //CAMBIAR ESTO, HAY QUE CAMBIAR LA BASE DE DATOS Y CREAR UNA TABLA PARA LOS CLIENTES
     public void guardarDatos(JTable tabla) {
         
-       String insertQuery = "INSERT INTO Empleados (nombre_empleado, ID_Empleado, salario_mensual, salario_anual) VALUES (?, ?, ?, ?)";
+       String insertQuery = "INSERT INTO Clientes (nombre_cliente, ID_cliente, ID_transacción, fecha, cantidad) VALUES (?, ?, ?, ?, ?)";
 
         try {
             // Crear un objeto PreparedStatement para ejecutar la consulta
@@ -144,16 +143,18 @@ public class LogicaClientes {
             // Iterar sobre las filas del modelo de tabla
             for (int i = 0; i < model.getRowCount(); i++) {
                 // Obtener los datos de la fila actual
-                String nombreEmpleado = (String) model.getValueAt(i, 0);
-                int idEmpleado = Integer.parseInt((String) model.getValueAt(i, 1));
-                float salarioMensual = Float.parseFloat((String) model.getValueAt(i, 2));
-                float salarioAnual = Float.parseFloat((String) model.getValueAt(i, 3));
+                String nombreCliente = (String) model.getValueAt(i, 0);
+                int idCliente = Integer.parseInt((String) model.getValueAt(i, 1));
+                int idTransacción = Integer.parseInt((String) model.getValueAt(i, 2));
+                int fecha = Integer.parseInt((String) model.getValueAt(i, 3));
+                float cantidad = Float.parseFloat((String) model.getValueAt(i, 4));
 
                 // Establecer los parámetros en el PreparedStatement
-                preparedStatement.setString(1, nombreEmpleado);
-                preparedStatement.setInt(2, idEmpleado);
-                preparedStatement.setFloat(3, salarioMensual);
-                preparedStatement.setFloat(4, salarioAnual);
+                preparedStatement.setString(1, nombreCliente);
+                preparedStatement.setInt(2, idCliente);
+                preparedStatement.setInt(3, idTransacción);
+                preparedStatement.setInt(4, fecha);
+                preparedStatement.setFloat(5, cantidad);
 
                 // Ejecutar la consulta para insertar los datos en la base de datos
                 preparedStatement.executeUpdate();
@@ -165,9 +166,9 @@ public class LogicaClientes {
         }
       
     }
-     //CAMBIAR ESTO, HAY QUE CAMBIAR LA BASE DE DATOS Y CREAR UNA TABLA PARA LOS CLIENTES
+    
     public void eliminarRegistro () {
-        String deleteQuery = "DELETE FROM Empleados WHERE registro = (SELECT MAX(registro) FROM (SELECT registro FROM Empleados) AS registros)";
+        String deleteQuery = "DELETE FROM Clientes WHERE registro = (SELECT MAX(registro) FROM (SELECT registro FROM Proveedores) AS registros)";
         try {
             // Crear un objeto Statement para ejecutar la consulta
             Statement statement = Conexion.getConexion().createStatement();
