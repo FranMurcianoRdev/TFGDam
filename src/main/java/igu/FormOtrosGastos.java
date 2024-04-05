@@ -42,8 +42,8 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         btnBorrar = new javax.swing.JButton();
         jMenuBar4 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
+        btnCerrarSesion = new javax.swing.JMenu();
+        btnVolverAtras = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,23 +185,23 @@ public class FormOtrosGastos extends javax.swing.JFrame {
             }
         });
 
-        jMenu8.setText("Cerrar Sesión");
-        jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu8MouseClicked(evt);
+                btnCerrarSesionMouseClicked(evt);
             }
         });
-        jMenu7.add(jMenu8);
+        jMenu7.add(btnCerrarSesion);
 
         jMenuBar4.add(jMenu7);
 
-        jMenu9.setText("Volver atrás");
-        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnVolverAtras.setText("Volver atrás");
+        btnVolverAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu9MouseClicked(evt);
+                btnVolverAtrasMouseClicked(evt);
             }
         });
-        jMenuBar4.add(jMenu9);
+        jMenuBar4.add(btnVolverAtras);
 
         setJMenuBar(jMenuBar4);
 
@@ -225,27 +225,26 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
-        // TODO add your handling code here:
+    private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
+
         FormLogin obj = new FormLogin();
         obj.setVisible(true);
         obj.setLocationRelativeTo(null);
         dispose();
 
-    }//GEN-LAST:event_jMenu8MouseClicked
+    }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
-        // TODO add your handling code here:
-        FormLogin objLogin = new FormLogin();
-        objLogin.setVisible(true);
+
     }//GEN-LAST:event_jMenu7MouseClicked
 
-    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
-        // TODO add your handling code here:
-        FormSeleccion objSeleccion= new FormSeleccion();
-        objSeleccion.setVisible(true);
+    private void btnVolverAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverAtrasMouseClicked
+
+        FormSeleccion obj= new FormSeleccion();
+        obj.setVisible(true);
+        obj.setLocationRelativeTo(null);
         dispose();
-    }//GEN-LAST:event_jMenu9MouseClicked
+    }//GEN-LAST:event_btnVolverAtrasMouseClicked
 
     private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
 
@@ -317,26 +316,17 @@ public class FormOtrosGastos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JMenu btnCerrarSesion;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnRegistro;
+    private javax.swing.JMenu btnVolverAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
