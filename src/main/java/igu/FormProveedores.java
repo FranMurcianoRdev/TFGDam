@@ -267,7 +267,7 @@ public class FormProveedores extends javax.swing.JFrame {
         if (!nombreProveedor.isEmpty() && !idProveedor.isEmpty() && !idTransaccion.isEmpty() && !fecha.isEmpty() && !cantidad.isEmpty()) {
             DefaultTableModel model = (DefaultTableModel) tableProveedores.getModel();
             model.addRow(new Object[]{nombreProveedor, idProveedor, idTransaccion, fecha, cantidad});
-            // Limpiar los campos de texto después de agregar
+            // Para limpiar los campos de texto después de agregar a la tabla
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField3.setText("");
