@@ -32,7 +32,6 @@ public class LogicaOtrosGastos {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Concepto");
         model.addColumn("ID Transacción");
-        model.addColumn("Fecha");
         model.addColumn("Cantidad");
 
         JTable table = new JTable(model);
@@ -70,13 +69,12 @@ public class LogicaOtrosGastos {
         try {
             Connection connection = Conexion.getConexion();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT concepto, ID_transacción, fecha, cantidad FROM Otros_Gastos");
+            ResultSet resultSet = statement.executeQuery("SELECT concepto, ID_transacción,  cantidad FROM Otros_Gastos");
 
             while (resultSet.next()) {
                 Object[] row = {
                         resultSet.getString("concepto"),
                         resultSet.getInt("ID_transacción"),
-                        resultSet.getInt("fecha"),
                         resultSet.getFloat("cantidad"),
                         
                 };
@@ -129,7 +127,7 @@ public class LogicaOtrosGastos {
   
     public void guardarDatos(JTable tabla) {
         
-       String insertQuery = "INSERT INTO Otros_Gastos (concepto, ID_transacción, fecha, cantidad) VALUES (?, ?, ?, ?)";
+       String insertQuery = "INSERT INTO Otros_Gastos (concepto, ID_transacción, cantidad) VALUES (?, ?, ? )";
 
         try {
             // Crear un objeto PreparedStatement para ejecutar la consulta
@@ -143,14 +141,12 @@ public class LogicaOtrosGastos {
                 // Obtener los datos de la fila actual
                 String concepto = (String) model.getValueAt(i, 0);
                 int idTransacción = Integer.parseInt((String) model.getValueAt(i, 1));
-                int fecha = Integer.parseInt((String) model.getValueAt(i, 2));
-                float cantidad = Float.parseFloat((String) model.getValueAt(i, 3));
+                float cantidad = Float.parseFloat((String) model.getValueAt(i, 2));
 
                 // Establecer los parámetros en el PreparedStatement
                 preparedStatement.setString(1, concepto);
                 preparedStatement.setInt(2, idTransacción);
-                preparedStatement.setInt(3, fecha);
-                preparedStatement.setFloat(4, cantidad);
+                preparedStatement.setFloat(3, cantidad);
 
                 // Ejecutar la consulta para insertar los datos en la base de datos
                 preparedStatement.executeUpdate();

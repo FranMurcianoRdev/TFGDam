@@ -29,11 +29,9 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         tableOtrosGastos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
         btnRegistro = new javax.swing.JButton();
@@ -54,7 +52,7 @@ public class FormOtrosGastos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Concepto", "ID Transacción", "Fecha", "Cantidad"
+                "Concepto", "ID Transacción", "Cantidad"
             }
         ));
         jScrollPane1.setViewportView(tableOtrosGastos);
@@ -65,17 +63,12 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("ID Transacción:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Fecha:");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Cantidad:");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -122,12 +115,10 @@ public class FormOtrosGastos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,17 +142,13 @@ public class FormOtrosGastos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -250,16 +237,14 @@ public class FormOtrosGastos extends javax.swing.JFrame {
 
         String concepto = jTextField1.getText();
         String idTransaccion = jTextField2.getText();
-        String fecha = jTextField3.getText();
         String cantidad = jTextField4.getText();
         //comprobamos que no haya campos vacíos, si no los hay, se añade el contenido
-        if (!concepto.isEmpty() && !idTransaccion.isEmpty() && !fecha.isEmpty() && !fecha.isEmpty() && !cantidad.isEmpty()) {
+        if (!concepto.isEmpty() && !idTransaccion.isEmpty() && !cantidad.isEmpty()) {
             DefaultTableModel model = (DefaultTableModel) tableOtrosGastos.getModel();
-            model.addRow(new Object[]{concepto, idTransaccion, fecha, cantidad});
+            model.addRow(new Object[]{concepto, idTransaccion, cantidad});
             // Limpiar los campos de texto después de agregar
             jTextField1.setText("");
             jTextField2.setText("");
-            jTextField3.setText("");
             jTextField4.setText("");
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, llene todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -283,6 +268,9 @@ public class FormOtrosGastos extends javax.swing.JFrame {
     private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
         LogicaOtrosGastos obj = new LogicaOtrosGastos();
         obj.eliminarRegistro();
+        //Para eliminar el registro en la tabla de la app
+        DefaultTableModel model = (DefaultTableModel) tableOtrosGastos.getModel();
+        model.removeRow(model.getRowCount() - 1);
     }//GEN-LAST:event_btnBorrarMouseClicked
     private void imprimirTabla() {
         
@@ -324,7 +312,6 @@ public class FormOtrosGastos extends javax.swing.JFrame {
     private javax.swing.JMenu btnVolverAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar4;
@@ -332,7 +319,6 @@ public class FormOtrosGastos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tableOtrosGastos;
     // End of variables declaration//GEN-END:variables

@@ -34,7 +34,6 @@ public class LogicaClientes {
         model.addColumn("Nombre Cliente");
         model.addColumn("ID Cliente");
         model.addColumn("ID Transacción");
-        model.addColumn("Fecha");
         model.addColumn("Cantidad");
 
         JTable table = new JTable(model);
@@ -72,14 +71,13 @@ public class LogicaClientes {
         try {
             Connection connection = Conexion.getConexion();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT ID_cliente, nombre_cliente, ID_transacción, fecha, cantidad FROM Clientes");
+            ResultSet resultSet = statement.executeQuery("SELECT ID_cliente, nombre_cliente, ID_transacción, cantidad FROM Clientes");
 
             while (resultSet.next()) {
                 Object[] row = {
-                        resultSet.getInt("ID_Cliente"),
                         resultSet.getString("nombre_cliente"),
+                        resultSet.getInt("ID_Cliente"),
                         resultSet.getInt("ID_transacción"),
-                        resultSet.getInt("fecha"),
                         resultSet.getFloat("cantidad"),
                 };
                 model.addRow(row);
@@ -131,7 +129,7 @@ public class LogicaClientes {
     //CAMBIAR ESTO, HAY QUE CAMBIAR LA BASE DE DATOS Y CREAR UNA TABLA PARA LOS CLIENTES
     public void guardarDatos(JTable tabla) {
         
-       String insertQuery = "INSERT INTO Clientes (nombre_cliente, ID_cliente, ID_transacción, fecha, cantidad) VALUES (?, ?, ?, ?, ?)";
+       String insertQuery = "INSERT INTO Clientes (nombre_cliente, ID_cliente, ID_transacción, cantidad) VALUES (?, ?, ?, ?)";
 
         try {
             // Crear un objeto PreparedStatement para ejecutar la consulta
@@ -145,16 +143,14 @@ public class LogicaClientes {
                 // Obtener los datos de la fila actual
                 String nombreCliente = (String) model.getValueAt(i, 0);
                 int idCliente = Integer.parseInt((String) model.getValueAt(i, 1));
-                int idTransacción = Integer.parseInt((String) model.getValueAt(i, 2));
-                int fecha = Integer.parseInt((String) model.getValueAt(i, 3));
-                float cantidad = Float.parseFloat((String) model.getValueAt(i, 4));
+                int idTransacción = Integer.parseInt((String) model.getValueAt(i, 2));                
+                float cantidad = Float.parseFloat((String) model.getValueAt(i, 3));
 
                 // Establecer los parámetros en el PreparedStatement
                 preparedStatement.setString(1, nombreCliente);
                 preparedStatement.setInt(2, idCliente);
                 preparedStatement.setInt(3, idTransacción);
-                preparedStatement.setInt(4, fecha);
-                preparedStatement.setFloat(5, cantidad);
+                preparedStatement.setFloat(4, cantidad);
 
                 // Ejecutar la consulta para insertar los datos en la base de datos
                 preparedStatement.executeUpdate();

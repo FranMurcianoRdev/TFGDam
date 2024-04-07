@@ -134,6 +134,11 @@ public class FormEmpleados extends javax.swing.JFrame {
                 btnBorrarMouseClicked(evt);
             }
         });
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnVerRegistro.setText("Ver Registro");
         btnVerRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -311,6 +316,9 @@ public class FormEmpleados extends javax.swing.JFrame {
      
         LogicaEmpleados obj = new LogicaEmpleados();
         obj.eliminarRegistro();
+        //Para eliminar el registro en la tabla de la app
+        DefaultTableModel model = (DefaultTableModel) tableEmpleados.getModel();
+        model.removeRow(model.getRowCount() - 1);
     }//GEN-LAST:event_btnBorrarMouseClicked
 
     private void btnVerRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerRegistroMouseClicked
@@ -319,6 +327,10 @@ public class FormEmpleados extends javax.swing.JFrame {
         obj.imprimirTablaRegistro();
        
     }//GEN-LAST:event_btnVerRegistroMouseClicked
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void imprimirTabla() {
         

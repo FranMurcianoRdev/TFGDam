@@ -10,11 +10,6 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.*;
 
-
-/**
- *
- * @author franc
- */
 public class LogicaEmpleados {
     
     public void imprimirTablaRegistro (){

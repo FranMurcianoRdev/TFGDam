@@ -11,6 +11,7 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,6 @@ public class LogicaProveedores {
         model.addColumn("Nombre Proveedor");
         model.addColumn("ID Proveedor");
         model.addColumn("ID Transacción");
-        model.addColumn("Fecha");
         model.addColumn("Cantidad");
 
         JTable table = new JTable(model);
@@ -71,14 +71,13 @@ public class LogicaProveedores {
         try {
             Connection connection = Conexion.getConexion();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT ID_Proveedor, nombre_proveedor, ID_transacción, fecha_transacción, cantidad FROM Proveedores");
+            ResultSet resultSet = statement.executeQuery("SELECT ID_Proveedor, nombre_proveedor, ID_transacción, cantidad FROM Proveedores");
 
             while (resultSet.next()) {
                 Object[] row = {
-                        resultSet.getInt("ID_Proveedor"),
                         resultSet.getString("nombre_proveedor"),
+                        resultSet.getInt("ID_Proveedor"),
                         resultSet.getInt("ID_transacción"),
-                        resultSet.getInt("fecha"),
                         resultSet.getFloat("cantidad"),
                         
                 };
@@ -131,7 +130,7 @@ public class LogicaProveedores {
   
     public void guardarDatos(JTable tabla) {
         
-       String insertQuery = "INSERT INTO Proveedores (nombre_proveedor, ID_Proveedor, ID_transacción, fecha, cantidad) VALUES (?, ?, ?, ?, ?)";
+       String insertQuery = "INSERT INTO Proveedores (nombre_proveedor, ID_Proveedor, ID_transacción, cantidad) VALUES (?, ?, ?, ?)";
 
         try {
             // Crear un objeto PreparedStatement para ejecutar la consulta
@@ -143,18 +142,16 @@ public class LogicaProveedores {
             // Iterar sobre las filas del modelo de tabla
             for (int i = 0; i < model.getRowCount(); i++) {
                 // Obtener los datos de la fila actual
-                String nombreProveedor = (String) model.getValueAt(i, 0);
-                int idProveedor = Integer.parseInt((String) model.getValueAt(i, 1));
-                int idTransacción = Integer.parseInt((String) model.getValueAt(i, 2));
-                int fecha = Integer.parseInt((String) model.getValueAt(i, 3));
-                float cantidad = Float.parseFloat((String) model.getValueAt(i, 4));
-
+                String nombre_proveedor = (String) model.getValueAt(i, 0);
+                int ID_Proveedor = Integer.parseInt((String) model.getValueAt(i, 1));
+                int ID_transacción = Integer.parseInt((String) model.getValueAt(i, 2));
+                float cantidad = Float.parseFloat((String) model.getValueAt(i, 3));
+               
                 // Establecer los parámetros en el PreparedStatement
-                preparedStatement.setString(1, nombreProveedor);
-                preparedStatement.setInt(2, idProveedor);
-                preparedStatement.setInt(3, idTransacción);
-                preparedStatement.setInt(4, fecha);
-                preparedStatement.setFloat(5, cantidad);
+                preparedStatement.setString(1, nombre_proveedor);
+                preparedStatement.setInt(2, ID_Proveedor);
+                preparedStatement.setInt(3, ID_transacción);
+                preparedStatement.setFloat(4, cantidad);
 
                 // Ejecutar la consulta para insertar los datos en la base de datos
                 preparedStatement.executeUpdate();

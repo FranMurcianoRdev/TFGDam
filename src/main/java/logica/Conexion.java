@@ -44,11 +44,4 @@ public class Conexion {
     }
 }
 
-// public static void main(String[] args) {
-        // Ejemplo de uso de la clase Conexion
-       // Connection conn = Conexion.getConexion();
-        // Realiza las consultas o las operaciones necesarias con la base de datos usando la conexión "conn"
-        // No olvides cerrar la conexión cuando hayas terminado
-       //Conexion.cerrarConexion();
- //
 
