@@ -4,7 +4,7 @@ package igu;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import logica.Conexion;
-import static logica.Logica.autenticar;
+import static logica.Login.autenticar;
 
 
 public class FormLogin extends javax.swing.JFrame {

@@ -6,7 +6,7 @@ import java.sql.*;
  *
  * @author franc
  */
-public class Logica {
+public class Login {
 
     public static boolean autenticar(String usuario, String password) {
         // Para buscar el usuario por nombre y contraseña
