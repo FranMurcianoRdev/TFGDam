@@ -255,7 +255,7 @@ public class FormClientes extends javax.swing.JFrame {
         if ( !idCliente.isEmpty() && !idTransaccion.isEmpty() && !cantidad.isEmpty()) {
             DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
             model.addRow(new Object[]{nombreCliente, idCliente, idTransaccion, cantidad});
-            // Limpiar los campos de texto después de agregar
+            // Para limpiar los campos de texto después de agregar los datos a la tabla
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField1.setText("");
@@ -287,8 +287,11 @@ public class FormClientes extends javax.swing.JFrame {
         LogicaClientes obj = new LogicaClientes();
         obj.eliminarRegistro();
         //Para eliminar el registro en la tabla de la app
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar el último registro?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) {
         DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
         model.removeRow(model.getRowCount() - 1);
+        }
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked

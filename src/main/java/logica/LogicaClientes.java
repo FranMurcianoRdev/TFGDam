@@ -126,19 +126,19 @@ public class LogicaClientes {
         model.addRow(totalRow); 
     }
   
-    //CAMBIAR ESTO, HAY QUE CAMBIAR LA BASE DE DATOS Y CREAR UNA TABLA PARA LOS CLIENTES
+  
     public void guardarDatos(JTable tabla) {
         
        String insertQuery = "INSERT INTO Clientes (nombre_cliente, ID_cliente, ID_transacción, cantidad) VALUES (?, ?, ?, ?)";
 
         try {
-            // Crear un objeto PreparedStatement para ejecutar la consulta
+            // PreparedStatement para ejecutar la consulta
             PreparedStatement preparedStatement = Conexion.getConexion().prepareStatement(insertQuery);
 
-            // Obtener el modelo de tabla asociado a la JTable
+            // Modelo de tabla asociado a la JTable del form
             DefaultTableModel model = (DefaultTableModel) tabla.getModel();
 
-            // Iterar sobre las filas del modelo de tabla
+            // Para iterar sobre las filas del modelo de tabla
             for (int i = 0; i < model.getRowCount(); i++) {
                 // Obtener los datos de la fila actual
                 String nombreCliente = (String) model.getValueAt(i, 0);
@@ -166,7 +166,7 @@ public class LogicaClientes {
     public void eliminarRegistro () {
         String deleteQuery = "DELETE FROM Clientes WHERE registro = (SELECT MAX(registro) FROM (SELECT registro FROM Proveedores) AS registros)";
         try {
-            // Crear un objeto Statement para ejecutar la consulta
+            // Statement para ejecutar la consulta
             Statement statement = Conexion.getConexion().createStatement();
 
             // Ejecutar la consulta para eliminar el último registro

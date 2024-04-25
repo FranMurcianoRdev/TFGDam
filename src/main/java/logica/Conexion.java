@@ -18,7 +18,7 @@ public class Conexion {
 
     private static Connection conexion = null;
 
-    // Método para establecer la conexión a la base de datos
+    // Para establecer la conexión a la base de datos
     public static Connection getConexion() {
         try {
             if (conexion == null || conexion.isClosed()) {
@@ -31,7 +31,7 @@ public class Conexion {
         return conexion;
     }
 
-    // Método para cerrar la conexión a la base de datos
+    // Para cerrar la conexión a la base de datos
     public static void cerrarConexion() {
         try {
             if (conexion != null && !conexion.isClosed()) {

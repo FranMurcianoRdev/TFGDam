@@ -282,7 +282,7 @@ public class FormEmpleados extends javax.swing.JFrame {
         if (!nombre.isEmpty() && !idempleado.isEmpty() && !salariomensual.isEmpty() && !salarioanual.isEmpty()) {
                     DefaultTableModel model = (DefaultTableModel) tableEmpleados.getModel();
                     model.addRow(new Object[]{nombre, idempleado, salariomensual, salarioanual});
-                    // Limpiar los campos de texto después de agregar
+                    // Para limpiar los campos de texto después de agregar
                     jTextField1.setText(""); 
                     jTextField2.setText("");
                     jTextField3.setText("");
@@ -317,8 +317,11 @@ public class FormEmpleados extends javax.swing.JFrame {
         LogicaEmpleados obj = new LogicaEmpleados();
         obj.eliminarRegistro();
         //Para eliminar el registro en la tabla de la app
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar el último registro?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) {
         DefaultTableModel model = (DefaultTableModel) tableEmpleados.getModel();
         model.removeRow(model.getRowCount() - 1);
+        }
     }//GEN-LAST:event_btnBorrarMouseClicked
 
     private void btnVerRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerRegistroMouseClicked
@@ -329,7 +332,7 @@ public class FormEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerRegistroMouseClicked
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void imprimirTabla() {

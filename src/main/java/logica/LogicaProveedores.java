@@ -133,13 +133,13 @@ public class LogicaProveedores {
        String insertQuery = "INSERT INTO Proveedores (nombre_proveedor, ID_Proveedor, ID_transacción, cantidad) VALUES (?, ?, ?, ?)";
 
         try {
-            // Crear un objeto PreparedStatement para ejecutar la consulta
+            // PreparedStatement para ejecutar la consulta
             PreparedStatement preparedStatement = Conexion.getConexion().prepareStatement(insertQuery);
 
-            // Obtener el modelo de tabla asociado a la JTable
+            // Modelo de tabla asociado a la JTable del form
             DefaultTableModel model = (DefaultTableModel) tabla.getModel();
 
-            // Iterar sobre las filas del modelo de tabla
+            // Para iterar sobre las filas del modelo de tabla
             for (int i = 0; i < model.getRowCount(); i++) {
                 // Obtener los datos de la fila actual
                 String nombre_proveedor = (String) model.getValueAt(i, 0);
@@ -167,7 +167,7 @@ public class LogicaProveedores {
     public void eliminarRegistro () {
         String deleteQuery = "DELETE FROM Proveedores WHERE registro = (SELECT MAX(registro) FROM (SELECT registro FROM Proveedores) AS registros)";
         try {
-            // Crear un objeto Statement para ejecutar la consulta
+            //  Statement para ejecutar la consulta
             Statement statement = Conexion.getConexion().createStatement();
 
             // Ejecutar la consulta para eliminar el último registro

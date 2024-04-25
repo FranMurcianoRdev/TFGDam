@@ -242,7 +242,7 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         if (!concepto.isEmpty() && !idTransaccion.isEmpty() && !cantidad.isEmpty()) {
             DefaultTableModel model = (DefaultTableModel) tableOtrosGastos.getModel();
             model.addRow(new Object[]{concepto, idTransaccion, cantidad});
-            // Limpiar los campos de texto después de agregar
+            // Para limpiar los campos de texto después de agregar
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField4.setText("");
@@ -269,8 +269,11 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         LogicaOtrosGastos obj = new LogicaOtrosGastos();
         obj.eliminarRegistro();
         //Para eliminar el registro en la tabla de la app
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar el último registro?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) {
         DefaultTableModel model = (DefaultTableModel) tableOtrosGastos.getModel();
         model.removeRow(model.getRowCount() - 1);
+        }
     }//GEN-LAST:event_btnBorrarMouseClicked
     private void imprimirTabla() {
         
