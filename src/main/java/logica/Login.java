@@ -14,11 +14,10 @@ public class Login {
         
         try (Connection conn = Conexion.getConexion();
              PreparedStatement statement = conn.prepareStatement(query)) {
-            // Se establecen los parámetros en el statement
+           
             statement.setString(1, usuario);
             statement.setString(2, password);
             
-            // Se ejecuta la consulta
             ResultSet resultSet = statement.executeQuery();
             
             // Si se encuentra el resultado, es que la autenticación es exitosa
