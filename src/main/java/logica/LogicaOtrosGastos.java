@@ -168,7 +168,7 @@ public class LogicaOtrosGastos {
             // Ejecutar la consulta para eliminar el último registro
             int rowsAffected = statement.executeUpdate(deleteQuery);
 
-            JOptionPane.showMessageDialog(null, "Se eliminó el último registro correctamente.");
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

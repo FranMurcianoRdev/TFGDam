@@ -14,7 +14,7 @@ public class Conexion {
     
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/TFG";
     private static final String USUARIO = "root";
-    private static final String CONTRASENA = "Fco123321mr!";
+    private static final String CONTRASENA = "root";
 
     private static Connection conexion = null;
 

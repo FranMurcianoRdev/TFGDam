@@ -85,6 +85,11 @@ public class FormOtrosGastos extends javax.swing.JFrame {
                 btnRegistroMouseClicked(evt);
             }
         });
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroActionPerformed(evt);
+            }
+        });
 
         btnImprimir.setText("Imprimir");
         btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,8 +278,13 @@ public class FormOtrosGastos extends javax.swing.JFrame {
         if (respuesta == JOptionPane.YES_OPTION) {
         DefaultTableModel model = (DefaultTableModel) tableOtrosGastos.getModel();
         model.removeRow(model.getRowCount() - 1);
+        JOptionPane.showMessageDialog(null, "Se eliminó el último registro correctamente.");
         }
     }//GEN-LAST:event_btnBorrarMouseClicked
+
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistroActionPerformed
     private void imprimirTabla() {
         
         PrinterJob printerJob = PrinterJob.getPrinterJob();
